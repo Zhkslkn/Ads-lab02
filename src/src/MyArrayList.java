@@ -49,12 +49,24 @@ public class MyArrayList<T> implements MyList<T>  {
 
     @Override
     public boolean remove(T item) {
+        for (int i = 0; i < size; i++) {
+            if (arr[i] == item) {
+                remove(i);
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public T remove(int index) {
-        return null;
+        checkIndex(index);
+        T removed = arr[index];
+        for(int i = index+1; i<arr.length; i++) {
+            arr[i-1] = arr[i];
+        }
+        size--;
+        return removed;
     }
 
     @Override
@@ -88,5 +100,11 @@ public class MyArrayList<T> implements MyList<T>  {
             newArr[i] = arr[i];
         }
         arr = newArr;
+    }
+
+    private void checkIndex(int index) {
+        if (index<0 || index>=size) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 }
