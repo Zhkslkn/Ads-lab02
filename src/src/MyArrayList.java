@@ -23,13 +23,28 @@ public class MyArrayList<T> implements MyList<T>  {
     }
 
     @Override
-    public void add(T item) {
-
+    public void add(T value) {
+        if(size == arr.length) {
+            increaseLength();
+        }
+        arr[size++] = value;
     }
 
     @Override
     public void add(T item, int index) {
-
+        if (size == arr.length) { // checking is array have enough space to add new value
+            increaseLength(); // increase space of array if not
+        }
+        T[] newArr = (T[]) new Object[arr.length]; // creating new array to swap elements to add new between them
+        for (int i = 0; i < index; i++) {
+            newArr[i] = arr[i];
+        }
+        for (int i = index; i < size; i++) {
+            newArr[i+1] = arr[i];
+        }
+        newArr[index] = (T) item;
+        arr = newArr;
+        size++;
     }
 
     @Override
@@ -65,5 +80,13 @@ public class MyArrayList<T> implements MyList<T>  {
     @Override
     public void sort() {
 
+    }
+
+    private void increaseLength() {
+        T[] newArr = (T[]) new Object[arr.length*2];
+        for(int i=0; i < arr.length; i++) {
+            newArr[i] = arr[i];
+        }
+        arr = newArr;
     }
 }
