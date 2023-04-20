@@ -71,12 +71,14 @@ public class MyArrayList<T> implements MyList<T>  {
 
     @Override
     public void clear() {
-
+        this.arr = (T[]) new Object[5];
+        this.size = 0;
     }
 
     @Override
     public T get(int index) {
-        return null;
+        checkIndex(index);
+        return arr[index];
     }
 
     @Override
