@@ -103,7 +103,56 @@ public class MyArrayList<T> implements MyList<T>  {
 
     @Override
     public void sort() {
+        if (typeOf().equals("int")) { // sorting if array have all integers
+            int n = size;
+            // bubble sort
+            for (int i = 0; i < n-1; i++)
+                for (int j = 0; j < n-i-1; j++)
+                    if ((int) arr[j] > (int) arr[j+1])
+                    {
+                        // swap temp and arr[i]
+                        T temp = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = temp;
+                    }
+        }
+        if (typeOf().equals("double")) { // sorting if array have all doubles
+            int n = size;
+            // bubble sort
+            for (int i = 0; i < n-1; i++)
+                for (int j = 0; j < n-i-1; j++)
+                    if ((Double) arr[j] > (Double) arr[j+1])
+                    {
+                        // swap temp and arr[i]
+                        T temp = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = temp;
+                    }
+        }
+    }
 
+    public String typeOf() {
+        int intSize = 0;
+        int doubleSize = 0;
+        for (int i = 0; i < size; i++) {
+            try {
+                int value = (Integer) arr[i];
+                intSize++;
+            } catch (ClassCastException ignored) {
+            }
+            try {
+                double tempD = (Double) arr[i];
+                doubleSize++;
+            } catch (ClassCastException ignored) {
+            }
+        }
+        if (intSize == size) {
+            return "int";
+        }
+        if (doubleSize == size) {
+            return "double";
+        }
+        return "0";
     }
 
     private void increaseLength() {
@@ -119,4 +168,19 @@ public class MyArrayList<T> implements MyList<T>  {
             throw new IndexOutOfBoundsException();
         }
     }
+}
+
+class FindTypeOf {
+    String printType(String x) {
+        return "String";
+    }
+
+    String printType(int x) {
+        return "Int";
+    }
+
+    String printType(double x) {
+        return "Double";
+    }
+
 }
