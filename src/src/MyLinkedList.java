@@ -1,12 +1,41 @@
 public class MyLinkedList<T> implements MyList {
+    private Node<T> head;
+    private Node<T> tail;
+    private int size;
+    private class Node<T> {
+        T value;
+        Node<T> next;
+        Node<T> prev;
+        Node(T value, Node<T> next, Node<T> prev) {
+            this.value = value;
+            this.next = next;
+            this.prev = prev;
+        }
+    }
+
+    public MyLinkedList() {
+        this.head = null;
+        this.tail = null;
+        size = 0;
+    }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public boolean contains(Object o) {
+        if (head.value == o) {
+            return true;
+        }
+        Node<T> ptr = head.next;
+        while (ptr != null) {
+            if (ptr.value == o) {
+                return true;
+            }
+            ptr = ptr.next;
+        }
         return false;
     }
 
