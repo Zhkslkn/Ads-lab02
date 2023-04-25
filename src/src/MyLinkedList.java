@@ -84,17 +84,73 @@ public class MyLinkedList<T> implements MyList {
 
     @Override
     public boolean remove(Object item) {
+        Node<T> myNode = new Node<T>((T) item, null, null);
+        if (head.value == myNode.value) {
+            head = head.next;
+            head.prev = null;
+            size--;
+            return true;
+        }
+        Node<T> nextNode = head.next;
+        while (nextNode != null) {
+            if (nextNode.value == myNode.value) {
+                Node<T> temp = nextNode.prev;
+                temp.next = nextNode.next;
+                Node<T> temp2 = nextNode.next;
+                temp2.prev = temp;
+                size--;
+                return true;
+            }
+            nextNode = nextNode.next;
+        }
         return false;
     }
 
     @Override
     public Object remove(int index) {
+        checkIndex(index);
+        if (index == 0) {
+            Object removed = head.value;
+            if (size == 1) {
+                head = null;
+                tail = null;
+                size = 0;
+                return removed;
+            }
+            head = head.next;
+            head.prev = null;
+            size--;
+            return removed;
+        }
+        if (index == size-1) {
+            Object removed = tail.value;
+            tail = tail.prev;
+            tail.next = null;
+            size--;
+            return removed;
+        }
+        Node<T> nextNode = head.next;
+        for (int i = 1; i <= size; i++) {
+            if (index == i) {
+                Node<T> p = nextNode.prev;
+                Node<T> n = nextNode.next;
+                Object removed = nextNode.value;
+
+                p.next = n;
+                n.prev = p;
+                size--;
+                return removed;
+            }
+            nextNode = nextNode.next;
+        }
         return null;
     }
 
     @Override
     public void clear() {
-
+        this.head = null;
+        this.tail = null;
+        size = 0;
     }
 
     @Override
