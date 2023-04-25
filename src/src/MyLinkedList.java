@@ -41,12 +41,45 @@ public class MyLinkedList<T> implements MyList {
 
     @Override
     public void add(Object item) {
-
+        Node<T> myNode = new Node<T>((T) item, null, null);
+        if (head == null) {
+            head = myNode;
+            tail = head;
+        }
+        else {
+            myNode.prev = tail;
+            tail.next = myNode;
+            tail = myNode;
+        }
+        size++;
     }
 
     @Override
     public void add(Object item, int index) {
+        checkIndex(index);
+        Node<T> myNode = new Node<T>((T) item, null, null);
+        if (index == 0) {
+            add(item);
+            return;
+        }
+        Node<T> nextNode = head;
+        for (int i = 1; i < size; i++) {
+            if (i == index) {
+                Node<T> temp = nextNode.next;
+                nextNode.next = myNode;
+                myNode.prev = nextNode;
+                myNode.next = temp;
+                temp.prev = myNode;
+            }
+            nextNode = nextNode.next;
+        }
+        size++;
+    }
 
+    public void checkIndex(int index) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     @Override
