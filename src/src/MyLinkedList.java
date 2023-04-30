@@ -105,11 +105,22 @@ public class MyLinkedList<T> implements MyList {
         size++;
     }
 
+    /*
+     * @function checkIndex - checking given index
+     * @param index - index to check
+     * @return void
+     */
     public void checkIndex(int index) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
     }
+
+    /*
+     * @function remove - removing element in linked list
+     * @param item - element to delete
+     * @return boolean
+     */
 
     @Override
     public boolean remove(Object item) {
@@ -135,6 +146,11 @@ public class MyLinkedList<T> implements MyList {
         return false;
     }
 
+    /*
+     * @function remove - deleting element at specific index
+     * @param index - index of element to delete
+     * @return Object
+     */
     @Override
     public Object remove(int index) {
         checkIndex(index);
@@ -175,6 +191,11 @@ public class MyLinkedList<T> implements MyList {
         return null;
     }
 
+    /*
+     * @function clear - clearing all linked list by creating new
+     * @noparam
+     * @return void
+     */
     @Override
     public void clear() {
         this.head = null;
@@ -182,6 +203,11 @@ public class MyLinkedList<T> implements MyList {
         size = 0;
     }
 
+    /*
+     * @function get - returning element in linked list by specific index
+     * @param index - index of element to get
+     * @return Object
+     */
     @Override
     public Object get(int index) {
         checkIndex(index);
@@ -198,6 +224,11 @@ public class MyLinkedList<T> implements MyList {
         return null;
     }
 
+    /*
+     * @function indexOf - returning index of given element in linked list
+     * @param o - element to find
+     * @return int
+     */
     @Override
     public int indexOf(Object o) {
         Node<T> newNode = new Node<T>((T) o, null, null);
@@ -214,6 +245,11 @@ public class MyLinkedList<T> implements MyList {
         return -1;
     }
 
+    /*
+     * @function lastIndexOf - returning last index of given element in linked list
+     * @param o - element to find
+     * @return - int
+     */
     @Override
     public int lastIndexOf(Object o) {
         Node<T> nextNode = new Node<T>((T) o, null, null);
@@ -230,6 +266,11 @@ public class MyLinkedList<T> implements MyList {
         return -1;
     }
 
+    /*
+     * @function sort - sorting elements by insertion sort
+     * @noparam
+     * @return void
+     */
     @Override
     public void sort() {
         if (isSortable()) {
@@ -246,12 +287,23 @@ public class MyLinkedList<T> implements MyList {
         }
     }
 
+    /*
+     * @function swapValue - function to swap two Nodes, used in sort
+     * @param first - first node
+     * @param second - second node
+     * @return void
+     */
     public void swapValue(Node<T> first, Node<T> second) {
         Object value = first.value;
         first.value = second.value;
         second.value = (T) value;
     }
 
+    /*
+     * @function isSortable - checking if linked list contains all integers or doubles
+     * @noparam
+     * @return boolean
+     */
     public boolean isSortable() {
         Node<T> nextNode = head;
         int intSize = 0;
