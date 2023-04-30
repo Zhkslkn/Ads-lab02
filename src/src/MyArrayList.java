@@ -88,6 +88,11 @@ public class MyArrayList<T> implements MyList<T>  {
         return false;
     }
 
+    /*
+     * @function remove - removing item from array in specific index and return item which was removed
+     * @param index - index of the element to remove
+     * @return Object
+     */
     @Override
     public T remove(int index) {
         checkIndex(index);
