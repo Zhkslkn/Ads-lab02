@@ -141,6 +141,11 @@ public class MyArrayList<T> implements MyList<T>  {
         return -1;
     }
 
+    /*
+     * @function lastIndexOf - returning last index of given element, -1 if element doesn't exist in array
+     * @param o
+     * @return
+     */
     @Override
     public int lastIndexOf(Object o) {
         for (int i = size - 1; i >= 0; i--) {
