@@ -217,6 +217,10 @@ public class MyArrayList<T> implements MyList<T>  {
         return "0";
     }
 
+    /*
+     * @function increaseLength - checking the size, if there is not enough place to store item, it increases place
+     * @return void
+     */
     private void increaseLength() {
         T[] newArr = (T[]) new Object[arr.length*2];
         for(int i=0; i < arr.length; i++) {
