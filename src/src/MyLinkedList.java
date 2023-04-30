@@ -155,21 +155,94 @@ public class MyLinkedList<T> implements MyList {
 
     @Override
     public Object get(int index) {
+        checkIndex(index);
+        if (index == 0) {
+            return head.value;
+        }
+        Node<T> nextNode = head.next;
+        for (int i = 1; i < size; i++) {
+            if (i == index) {
+                return nextNode.value;
+            }
+            nextNode = nextNode.next;
+        }
         return null;
     }
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        Node<T> newNode = new Node<T>((T) o, null, null);
+        if (head.value == newNode.value) {
+            return 0;
+        }
+        Node<T> nextNode = head.next;
+        for (int i = 1; i <= size; i++) {
+            if (nextNode.value == newNode.value) {
+                return i;
+            }
+            nextNode = nextNode.next;
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        Node<T> nextNode = new Node<T>((T) o, null, null);
+        if (tail.value == nextNode.value) { // checking if element equal to tail of linked list
+            return size-1;
+        }
+        Node<T> nextNode2 = tail.prev;
+        for (int i = size-2; i >= 0; i--) {
+            if (nextNode2.value == nextNode.value) { // checking if element contains in linked list
+                return i;
+            }
+            nextNode2 = nextNode2.prev;
+        }
+        return -1;
     }
 
     @Override
     public void sort() {
+        if (isSortable()) {
+            Node<T> front = head;
+            Node<T> back = null;
+            while (front != null) {
+                back = front.next;
+                while (back != null && back.prev != null && (Integer) back.value < (Integer) back.prev.value) {
+                    swapValue(back, back.prev);
+                    back = back.prev;
+                }
+                front = front.next;
+            }
+        }
+    }
 
+    public void swapValue(Node<T> first, Node<T> second) {
+        Object value = first.value;
+        first.value = second.value;
+        second.value = (T) value;
+    }
+
+    public boolean isSortable() {
+        Node<T> nextNode = head;
+        int intSize = 0;
+        int doubleSize = 0;
+        for (int i = 1; i <= size; i++) {
+            try {
+                int value = (Integer) nextNode.value;
+                intSize++;
+            } catch (ClassCastException e) {
+            }
+            try {
+                double tempD = (Double) nextNode.value;
+                doubleSize++;
+            } catch (ClassCastException e) {
+            }
+            nextNode = nextNode.next;
+        }
+        if (intSize == size || doubleSize == size || doubleSize + intSize == size) {
+            return true;
+        }
+        return false;
     }
 }
