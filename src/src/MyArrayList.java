@@ -2,15 +2,29 @@ public class MyArrayList<T> implements MyList<T>  {
     private T[] arr;
     private int size;
 
+    /*
+     * @function MyArrayList - constructor
+     * @return void
+     */
     public MyArrayList() {
         this.arr = (T[]) new Object[5];
         this.size = 0;
     }
 
+    /*
+     * @function size - returning size of array as integer
+     * @return int
+     */
     @Override
     public int size() {
         return size;
     }
+
+    /*
+     * @function contains - returning true if array contains given object, false otherwise
+     * @param o - object to check
+     * @return boolean
+     */
 
     @Override
     public boolean contains(Object o) {
@@ -22,6 +36,11 @@ public class MyArrayList<T> implements MyList<T>  {
         return false;
     }
 
+    /*
+     * @function add - adding a new element to array
+     * @param item - object to add
+     * @return void
+     */
     @Override
     public void add(T value) {
         if(size == arr.length) {
@@ -30,6 +49,12 @@ public class MyArrayList<T> implements MyList<T>  {
         arr[size++] = value;
     }
 
+    /*
+     * @function add - adding a new element to specific index in array
+     * @param item - object to add
+     * @param index - where to add item
+     * @return void
+     */
     @Override
     public void add(T item, int index) {
         if (size == arr.length) { // checking is array have enough space to add new value
