@@ -72,6 +72,11 @@ public class MyArrayList<T> implements MyList<T>  {
         size++;
     }
 
+    /*
+     * @function remove - removing item from array and return true if item has removed, false otherwise
+     * @param item - item to remove
+     * @return boolean
+     */
     @Override
     public boolean remove(T item) {
         for (int i = 0; i < size; i++) {
