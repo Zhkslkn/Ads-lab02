@@ -22,18 +22,26 @@ public class MyLinkedList<T> implements MyList {
             this.prev = prev;
         }
     }
-
     public MyLinkedList() {
         this.head = null;
         this.tail = null;
         size = 0;
     }
 
+    /*
+     * @function size - returning size of linked list
+     * @return int size
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /*
+     * @function contains - checking linked list contains given item
+     * @param o - item to check
+     * @return boolean value
+     */
     @Override
     public boolean contains(Object o) {
         if (head.value == o) {
@@ -49,6 +57,11 @@ public class MyLinkedList<T> implements MyList {
         return false;
     }
 
+    /*
+     * @function add - adding element to linked list at tail
+     * @param item - element
+     * @return void
+     */
     @Override
     public void add(Object item) {
         Node<T> myNode = new Node<T>((T) item, null, null);
@@ -64,6 +77,12 @@ public class MyLinkedList<T> implements MyList {
         size++;
     }
 
+    /*
+     * @function add - adding element to linked list to particular index
+     * @param item - element to add
+     * @param index - index of element to add
+     * @return void
+     */
     @Override
     public void add(Object item, int index) {
         checkIndex(index);
