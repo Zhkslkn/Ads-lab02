@@ -156,6 +156,11 @@ public class MyArrayList<T> implements MyList<T>  {
         return -1;
     }
 
+    /*
+     * @function sort - sorting array with bubble sort
+     * @noparam
+     * @return void
+     */
     @Override
     public void sort() {
         String type = FindTypeOf();
@@ -184,6 +189,10 @@ public class MyArrayList<T> implements MyList<T>  {
         }
     }
 
+    /*
+     * @function FindTypeOf - checking is array can be sorted, return true if yes, false otherwise
+     * @return bool
+     */
     public String FindTypeOf() {
         int intSize = 0;
         int doubleSize = 0;
