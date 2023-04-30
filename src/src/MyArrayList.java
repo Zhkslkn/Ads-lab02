@@ -104,6 +104,11 @@ public class MyArrayList<T> implements MyList<T>  {
         return removed;
     }
 
+    /*
+     * @function clear - clearing array by creating new empty array
+     * @noparam
+     * @return void
+     */
     @Override
     public void clear() {
         this.arr = (T[]) new Object[5];
