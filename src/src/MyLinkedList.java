@@ -1,4 +1,7 @@
 public class MyLinkedList<T> implements MyList {
+    /*
+     value of element, reference to next and previous elements
+     */
     private Node<T> head;
     private Node<T> tail;
     private int size;
@@ -6,6 +9,13 @@ public class MyLinkedList<T> implements MyList {
         T value;
         Node<T> next;
         Node<T> prev;
+
+        /**
+         * @function Node - create Node with given item
+         * @param value - node value
+         * @param next - next Node
+         * @param prev - previous Node
+         */
         Node(T value, Node<T> next, Node<T> prev) {
             this.value = value;
             this.next = next;
