@@ -115,12 +115,22 @@ public class MyArrayList<T> implements MyList<T>  {
         this.size = 0;
     }
 
+    /*
+     * @function get - returning element from array in specific index
+     * @param index - index of element to get
+     * @return Object in generic type
+     */
     @Override
     public T get(int index) {
         checkIndex(index);
         return arr[index];
     }
 
+    /*
+     * @function indexOf - returning index of given element
+     * @param o - item to find index
+     * @return int
+     */
     @Override
     public int indexOf(Object o) {
         for (int i = 0; i < size; i++) {
