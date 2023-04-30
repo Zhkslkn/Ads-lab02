@@ -225,6 +225,11 @@ public class MyArrayList<T> implements MyList<T>  {
         arr = newArr;
     }
 
+    /*
+     * @function checkIndex - checking if given index correct, throwing error if not
+     * @param index - index to check
+     * @return void
+     */
     private void checkIndex(int index) {
         if (index<0 || index>=size) {
             throw new IndexOutOfBoundsException();
